@@ -13,8 +13,8 @@ on:
       PYPI_TOKEN:
         required: false
   # run every day at 11:15am
-  schedule:
-    - cron:  '15 11 * * *'
+  #schedule:
+  #  - cron:  '15 11 * * *'
   # or manually trigger it
   workflow_dispatch:
   push:
@@ -151,18 +151,18 @@ jobs:
         with:
           name: torchrl-linux-${{ matrix.python_version[0] }}_${{ matrix.cuda_support[2] }}.whl
           path: /tmp/wheels
-      - name: Push TorchRL Binary to PYPI
-        env:
-            PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-          python3 -mpip install twine
-          python -m twine upload \
-              --username __token__ \
-              --password "$PYPI_TOKEN" \
-              --skip-existing \
-              /tmp/wheels/torchrl_nightly-*.whl \
-              --verbose
+      #- name: Push TorchRL Binary to PYPI
+      #  env:
+      #      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      #  run: |
+      #    export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+      #    python3 -mpip install twine
+      #    python -m twine upload \
+      #        --username __token__ \
+      #        --password "$PYPI_TOKEN" \
+      #        --skip-existing \
+      #        /tmp/wheels/torchrl_nightly-*.whl \
+      #        --verbose
 
   upload-wheel-mac:
     needs: test-wheel-mac
@@ -178,17 +178,17 @@ jobs:
         with:
           name: torchrl-mac-${{ matrix.python_version[0] }}.whl
           path: /tmp/wheels
-      - name: Push TorchRL Binary to PYPI
-        env:
-            PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          python3 -mpip install twine
-          python3 -m twine upload \
-              --username __token__ \
-              --password "$PYPI_TOKEN" \
-              --skip-existing \
-              /tmp/wheels/torchrl_nightly-*.whl \
-              --verbose
+      #- name: Push TorchRL Binary to PYPI
+      #  env:
+      #      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      #  run: |
+      #    python3 -mpip install twine
+      #    python3 -m twine upload \
+      #        --username __token__ \
+      #        --password "$PYPI_TOKEN" \
+      #        --skip-existing \
+      #        /tmp/wheels/torchrl_nightly-*.whl \
+      #        --verbose
 
 #   test-wheel-linux:
 #     needs: build-wheel-linux
