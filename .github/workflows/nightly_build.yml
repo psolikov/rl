@@ -226,13 +226,13 @@ jobs:
          run: |
            export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
            python3 -mpip install numpy pytest pillow>=4.1.1 scipy networkx expecttest pyyaml
-      #  - name: Download built wheels
-      #    uses: actions/download-artifact@v2
-      #    with:
-      #      name: torchrl-linux-${{ matrix.python_version[0] }}_${{ matrix.cuda_support[2] }}.whl
-      #      path: /tmp/wheels
-      #    env:
-      #      AGENT_TOOLSDIRECTORY: "/opt/hostedtoolcache"
+       - name: Download built wheels
+         uses: actions/download-artifact@v2
+         with:
+           name: torchrl-linux-${{ matrix.python_version[0] }}_${{ matrix.cuda_support[2] }}.whl
+           path: /tmp/wheels
+         env:
+           AGENT_TOOLSDIRECTORY: "/opt/hostedtoolcache"
       #  - name: Install built wheels
       #    run: |
       #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
