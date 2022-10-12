@@ -234,27 +234,27 @@ jobs:
            path: /tmp/wheels
          env:
            AGENT_TOOLSDIRECTORY: "/opt/hostedtoolcache"
-      #  - name: Install built wheels
-      #    run: |
-      #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-      #      python3 -mpip install /tmp/wheels/*
-      #  - name: Log version string
-      #    run: |
-      #      # Avoid ambiguity of "import torchrl" by deleting the source files.
-      #      rm -rf torchrl/
-      #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-      #      python3 -c "import torchrl; print(torchrl.__version__)"
-      #  - name: Run tests
-      #    run: |
-      #      set -e
-      #      export IN_CI=1
-      #      mkdir test-reports
-      #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-      #      python3 -m torch.utils.collect_env
-      #      python3 -c "import torchrl; print(torchrl.__version__);from torchrl.data import ReplayBuffer"
-      #      EXIT_STATUS=0
-      #      pytest test/smoke_test.py -v --durations 20
-      #      exit $EXIT_STATUS
+       - name: Install built wheels
+         run: |
+           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+           python3 -mpip install /tmp/wheels/*
+       - name: Log version string
+         run: |
+           # Avoid ambiguity of "import torchrl" by deleting the source files.
+           rm -rf torchrl/
+           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+           python3 -c "import torchrl; print(torchrl.__version__)"
+       - name: Run tests
+         run: |
+           set -e
+           export IN_CI=1
+           mkdir test-reports
+           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+           python3 -m torch.utils.collect_env
+           python3 -c "import torchrl; print(torchrl.__version__);from torchrl.data import ReplayBuffer"
+           EXIT_STATUS=0
+           pytest test/smoke_test.py -v --durations 20
+           exit $EXIT_STATUS
 
 
 # jobs:
