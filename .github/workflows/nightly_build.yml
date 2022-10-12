@@ -33,6 +33,9 @@ jobs:
     steps:
       - name: Checkout torchrl
         uses: actions/checkout@v2
+        env:
+         AGENT_TOOLSDIRECTORY: "/opt/hostedtoolcache"
+
       - name: Install PyTorch nightly
         run: |
           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
