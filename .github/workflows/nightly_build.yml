@@ -200,10 +200,12 @@ jobs:
          cuda_support: [["", "cpu", "cpu"]]
      steps:
        - name: Setup Python
-         uses: actions/setup-python@v1
+         uses: actions/setup-python@v2
          with:
            python-version: ${{ matrix.python_version[1] }}
            architecture: x64
+         env:
+           AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
        - name: Checkout torchrl
          uses: actions/checkout@v2
        - name: Install PyTorch Nightly
