@@ -32,7 +32,7 @@ jobs:
     container: pytorch/manylinux-cuda116
     steps:
       - name: Checkout torchrl
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install PyTorch nightly
         run: |
           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
@@ -53,7 +53,7 @@ jobs:
           python3 -mpip install auditwheel
           auditwheel show dist/*
       - name: Upload wheel for the test-wheel job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: torchrl-linux-${{ matrix.python_version[0] }}_${{ matrix.cuda_support[2] }}.whl
           path: dist/*.whl
