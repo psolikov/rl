@@ -212,20 +212,20 @@ jobs:
            architecture: x64
          env:
            AGENT_TOOLSDIRECTORY: "/opt/hostedtoolcache"
-      #  - name: Checkout torchrl
-      #    uses: actions/checkout@v2
-      #  - name: Install PyTorch Nightly
-      #    run: |
-      #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-      #      python3 -mpip install --pre torch --extra-index-url https://download.pytorch.org/whl/nightly/${{ matrix.cuda_support[1] }}
-      #  - name: Upgrade pip
-      #    run: |
-      #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-      #      python3 -mpip install --upgrade pip
-      #  - name: Install test dependencies
-      #    run: |
-      #      export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
-      #      python3 -mpip install numpy pytest pillow>=4.1.1 scipy networkx expecttest pyyaml
+       - name: Checkout torchrl
+         uses: actions/checkout@v2
+       - name: Install PyTorch Nightly
+         run: |
+           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+           python3 -mpip install --pre torch --extra-index-url https://download.pytorch.org/whl/nightly/${{ matrix.cuda_support[1] }}
+       - name: Upgrade pip
+         run: |
+           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+           python3 -mpip install --upgrade pip
+       - name: Install test dependencies
+         run: |
+           export PATH="/opt/python/${{ matrix.python_version[1] }}/bin:$PATH"
+           python3 -mpip install numpy pytest pillow>=4.1.1 scipy networkx expecttest pyyaml
       #  - name: Download built wheels
       #    uses: actions/download-artifact@v2
       #    with:
